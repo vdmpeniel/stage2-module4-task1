@@ -5,14 +5,19 @@ import java.util.Objects;
 
 @Slf4j
 public class ThreadSafeSingleton {
-    private static volatile ThreadSafeSingleton instance = new ThreadSafeSingleton();
+    private static volatile ThreadSafeSingleton instance;
 
     private ThreadSafeSingleton(){
         // nothing to do here
     }
 
     public static ThreadSafeSingleton getInstance(){
-        return instance;
+        synchronized (ThreadSafeSingleton.class) {
+            if (instance == null){
+                instance = new ThreadSafeSingleton();
+            }
+            return instance;
+        }
     }
 
     public static void main(String[] args) {
