@@ -1,10 +1,16 @@
 package com.mjc.stage2;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @EqualsAndHashCode
 @ToString
+@Getter
+@Setter
 public class Employee {
     private String name;
     private String lastName;
@@ -16,59 +22,61 @@ public class Employee {
     public Employee() {
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCarNumber() {
-        return carNumber;
-    }
-
-    public void setCarNumber(String carNumber) {
-        this.carNumber = carNumber;
-    }
 
     public static EmployeeBuilder getBuilder() {
         return new EmployeeBuilder();
     }
 
     public static class EmployeeBuilder {
-        // Write your code here!
+        private Employee employee;
+        public EmployeeBuilder(){
+            employee = new Employee();
+        }
+
+        public EmployeeBuilder setName(String name){
+            this.employee.name = name;
+            return this;
+        }
+
+        public EmployeeBuilder setLastName(String lastName){
+            this.employee.lastName = lastName;
+            return this;
+        }
+
+        public EmployeeBuilder setPosition(String position){
+            this.employee.position = position;
+            return this;
+        }
+
+        public EmployeeBuilder setPhone(String phone){
+            this.employee.phone = phone;
+            return this;
+        }
+
+        public EmployeeBuilder setEmail(String email){
+            this.employee.email = email;
+            return this;
+        }
+
+        public EmployeeBuilder setCarNumber(String carNumber){
+            this.employee.carNumber = carNumber;
+            return this;
+        }
+
+        public Employee build(){
+            return employee;
+        }
+
+    }
+
+    public static void main(String[] args) {
+        Employee employee = Employee.getBuilder()
+                .setName("Anna")
+                .setLastName("Smith")
+                .setPosition("Software Engineer")
+                .setPhone("+1 305 789 1267")
+                .setCarNumber("56-787")
+                .build();
+        log.info("Employee: " + employee.getName() + " " + employee.getLastName());
     }
 }
