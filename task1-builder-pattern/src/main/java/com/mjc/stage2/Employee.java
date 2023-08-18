@@ -20,6 +20,7 @@ public class Employee {
     private String carNumber;
 
     public Employee() {
+        // nothing to do here.
     }
 
 
@@ -28,7 +29,7 @@ public class Employee {
     }
 
     public static class EmployeeBuilder {
-        private Employee employee;
+        private final Employee employee;
         public EmployeeBuilder(){
             employee = new Employee();
         }
@@ -75,6 +76,7 @@ public class Employee {
                 .setLastName("Smith")
                 .setPosition("Software Engineer")
                 .setPhone("+1 305 789 1267")
+                .setEmail("lala@gmail.com")
                 .setCarNumber("56-787")
                 .build();
         log.info("Employee: " + employee.getName() + " " + employee.getLastName());

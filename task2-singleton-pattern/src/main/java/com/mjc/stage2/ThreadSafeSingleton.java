@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Slf4j
 public class ThreadSafeSingleton {
-    private static ThreadSafeSingleton instance;
+    private static volatile ThreadSafeSingleton instance;
 
     private ThreadSafeSingleton(){
 
